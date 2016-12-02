@@ -95,7 +95,8 @@ So what I tried to do is, create a VPC with public and private subnets, deploy R
   ![instance2](./imgs/instance2.png)
 
 * Security Group
-  I created a new "petshop" Security Group for EC2 instance to use (the "petshop" Security Group in "petshop" VPC, with SSH and HTTP access), however, RDS used the default Security Group for "petshop" VPC. So in order to EC2 server to be able to access RDS, we need to add the following rules in the RDS's Security Group (a.k.a. the default Security Group for "petshop" VPC)
+
+  I created a new "petshop" Security Group for EC2 instance to use (the "petshop" Security Group in "petshop" VPC, with SSH and HTTP access); however, RDS used the default Security Group for "petshop" VPC. So in order to EC2 server to be able to access RDS, we need to add the following rules (to allow All Traffic from/to EC2's Security Group) in the RDS's Security Group (a.k.a. the default Security Group for "petshop" VPC)
   ![sg1](./imgs/sg1.png)
   ![sg2](./imgs/sg2.png)
 
@@ -112,16 +113,16 @@ So what I tried to do is, create a VPC with public and private subnets, deploy R
   [ec2-user]$ sudo yum install -y docker
   [ec2-user]$ sudo service docker start
   ```
-  [install docker](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/docker-basics.html)
-  [install docker-compose](https://docs.docker.com/compose/install/)
+    * [How to install docker in Amazon Linux](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/docker-basics.html)
+    * [How to install docker-compose in Amazon Linux](https://docs.docker.com/compose/install/)
 
   * SCP docker-compse-prod.yml into instance
   ```
   // local machine
-  scp -i ~/.ssh/aws-635795671316.pem docker-compose-prod.yml ec2-user@[public ip]:~/
+  scp -i ~/.ssh/aws-635795671316.pem docker-compose-prod.yml ec2-user@[public ip]:~/docker-compose.yml
   ```
   ![scp](./imgs/scp.png)
 
-  * RUN!!!
+  * RUN!!! (or run it in background with `docker-compose up -d`)
   ![docker-compose](./imgs/docker-compose.png)
   ![demo](./imgs/demo.gif)
