@@ -73,4 +73,4 @@ I will create
   * name: petshop-public
   * VPC: petshop
   * Routes
-    ![routes](./imgs/routes)
+    ![routes](/imgs/routes)
