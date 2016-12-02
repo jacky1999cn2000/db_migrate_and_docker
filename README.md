@@ -98,3 +98,30 @@ So what I tried to do is, create a VPC with public and private subnets, deploy R
   I created a new "petshop" Security Group for EC2 instance to use (the "petshop" Security Group in "petshop" VPC, with SSH and HTTP access), however, RDS used the default Security Group for "petshop" VPC. So in order to EC2 server to be able to access RDS, we need to add the following rules in the RDS's Security Group (a.k.a. the default Security Group for "petshop" VPC)
   ![sg1](./imgs/sg1.png)
   ![sg2](./imgs/sg2.png)
+
+* SSH & SCP
+  * SSH into the instance and install docker
+  ```
+  // local machine
+  ssh -i ~/.ssh/aws-635795671316.pem ec2-user@[public ip]
+
+  ***************************************
+
+  // ec2 instance
+  [ec2-user]$ sudo yum update -y
+  [ec2-user]$ sudo yum install -y docker
+  [ec2-user]$ sudo service docker start
+  ```
+  [install docker](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/docker-basics.html)
+  [install docker-compose](https://docs.docker.com/compose/install/)
+
+  * SCP docker-compse-prod.yml into instance
+  ```
+  // local machine
+  scp -i ~/.ssh/aws-635795671316.pem docker-compose-prod.yml ec2-user@[public ip]:~/
+  ```
+  ![scp](./imgs/scp.png)
+
+  * RUN!!!
+  ![docker-compose](./imgs/docker-compose.png)
+  ![demo](./imgs/demo.gif)

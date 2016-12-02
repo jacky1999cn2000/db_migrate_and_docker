@@ -1,0 +1,12 @@
+petshop:
+  image: jacky1999cn2000/db_migrate_and_docker:latest
+  ports:
+    - "80:3000"
+  environment:
+    NODE_ENV: "production"
+    DATABASE_HOST: "petshop.cqafnkhpi5gw.us-west-2.rds.amazonaws.com"
+    DATABASE_USER: "root"
+    DATABASE_PASSWORD: "password"
+    DATABASE: "helloworld"
+  working_dir: "/usr/src/app"
+  entrypoint: "forever index.js"
