@@ -33,6 +33,7 @@ This project was to demonstrate how db-migrate works.
   * use `make run` to do development (use `make bash` to do npm install to make sure all npm packages were installed on linux instance)
   * after done development, use `make push` to `install version build_image tag push`(in this order)
   * after this, the `jacky1999cn2000/db_migrate_and_docker:GIT_HASH` and `jacky1999cn2000/db_migrate_and_docker:latest` were pushed to dockerhub
+  * create a `docker-compse-prod.yml` file and can use it to run docker in EC2 machine
 
 # aws setup
 
@@ -118,7 +119,7 @@ So what I tried to do is, create a VPC with public and private subnets, deploy R
 
   * SCP docker-compse-prod.yml into instance
   ```
-  // local machine
+  // local machine (copy and rename)
   scp -i ~/.ssh/aws-635795671316.pem docker-compose-prod.yml ec2-user@[public ip]:~/docker-compose.yml
   ```
   ![scp](./imgs/scp.png)
