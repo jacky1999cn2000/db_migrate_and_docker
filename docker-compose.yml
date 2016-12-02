@@ -1,0 +1,33 @@
+version: '2'
+services:
+  express:
+    build: .
+    # links:
+    #   - mysql:mysql
+    ports:
+      - "3000:3000"
+      - "3344:3344"
+      - "8989:8989"
+      - "5858:5858"
+    volumes:
+      - .:/usr/src/app
+    environment:
+      NODE_ENV: "development"
+      DATABASE_HOST: "mysql"
+      DATABASE_USER: "root"
+      DATABASE_PASSWORD: "password"
+      DATABASE: "helloworld"
+    working_dir: "/usr/src/app"
+    entrypoint: ./wait-for-it.sh mysql:3306 -t 0 -- bin/debug.sh
+  mysql:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "password"
+    volumes:
+      - "./schema:/docker-entrypoint-initdb.d/"
+    ports:
+      - "3306:3306"
+networks:
+  default:
+    external:
+      name: jz_playground

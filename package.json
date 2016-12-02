@@ -1,0 +1,27 @@
+{
+  "name": "db_migrate_demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "co": "^4.6.0",
+    "co-request": "^1.0.0",
+    "cors": "^2.8.1",
+    "db-migrate": "^0.10.0-beta.20",
+    "db-migrate-mysql": "^1.1.10",
+    "express": "^4.14.0",
+    "lodash": "^4.17.2",
+    "mysql-promise": "^4.1.0"
+  },
+  "devDependencies": {
+    "node-inspector": "^0.12.8",
+    "nodemon": "^1.11.0"
+  }
+}
